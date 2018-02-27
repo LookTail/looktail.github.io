@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>从Hexo开始 | LookTail</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>  
+  <header>
+  <div id="root" class="header-warp">
+    <a href="/"><h3 class="logo-font">LookTail</h3></a>
+    <div id="about-wrapper" class="about-wrapper">
+      <a id="about" title="LookTail" href="#" class="img-container">
+        <img class="av-pic" src="/assets/avatar.jpg">  
+      </a>
+    </div>
+    <nav class="navigation">
+      <a href="/">Home</a>
+      <a href="/archives">Archive</a>
+    </a>
+    </nav>
+  </div>
+</header>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#about').popover({template: '<div id="pop" class="popover" role="tooltip"><div class="arrow"></div><img class="popover-img" src="/assets/avatar.jpg"><div class="popover-info"><h2>LookTail</h2><h4>About Me</h4><p>我什么都不会啊怎么办？怎么办？就这么懒还想知道怎么办？</p><h4>Find Me</h4><ul><li>GitHub: <a href="https://github.com/LookTail" target="_blank">LookTail</a></li></ul></div></div>', placement: "left", trigger: "manual"});
+  });
+
+  $('body').on("mouseenter", '#about-wrapper',
+  function () {
+    $('#about').popover('show');
+  });
+
+  $('body').on("mouseleave", '#about-wrapper',
+  function () {
+    $('#about').popover('hide');
+  });
+</script>
+  <section class="content-container">
+    <div class="post-wrapper">
+  <h1>从Hexo开始</h1>
+  <div class="meta-wrapper">
+  <span>Posted at</span>
+  <time>2017-10-11</time>
+  
+</div>
+  <div class="markdown-body">
+    <p>偶然听朋友说起Hexo可以快速搭建起一个小型的个人博客，又想想这几年看过别人写的博客不少，从中也算受益良多。虽然自己这几年多多少少也鼓捣过一些技术，踩过不少坑，但从来没有想过记录，导致现在掉过的坑下次碰到还得再掉一遍。</p>
+<a id="more"></a>
+<h1 id="写博客的原因"><a href="#写博客的原因" class="headerlink" title="写博客的原因"></a>写博客的原因</h1><p>原因有很多，记录自己踩过的技术坑，帮助别人爬坑（好吧其实我觉得根本没人会看啊），也会记录一点生活里的事情，还有就是为给未来找工作增加一点可以看得见的东西吧，虽然大四的时候就打算读研所以没有怎么试水应届生招聘，可我觉得就我这啥都没的找得到啥啊。在King’s的一年Master生涯虽然才刚开始，但本科四年说实话还是浪费了不少的时间，能补回来多少不知道，补一点是一点吧。</p>
+<h1 id="关于Hexo主题"><a href="#关于Hexo主题" class="headerlink" title="关于Hexo主题"></a>关于Hexo主题</h1><p>Hexo这个框架还是挺好用的，照着官网的步骤一步一步来就好了，重点还是主题这样个性化的东西。在官网上找了几个主题试用了一下，喜欢不喜欢是一方面，不好用才是真的啊！大概我还是Hexo的新手吧，还不太熟悉怎么去适配这些模板，所以打算自己写一个模板，既能按照自己的喜好来，也算是给我空荡荡的github仓库添加一点东西吧。再说了，自己的博客都没有点个性化的东西，那我还不如上简书开个账号呢。</p>
+<h1 id="以此为起点"><a href="#以此为起点" class="headerlink" title="以此为起点"></a>以此为起点</h1><p>以我的Hexo的搭建以及本文为起点，将今后所有值得记录的东西，不管是代码还是生活，都记录下来，像我这种记忆不好的人，就该老老实实写下来咯。下一步的目标是写一个自己的主题并发布上Hexo,不知道能不能在github上得到几star嘿嘿。目前就暂用一下别人的主题啦，虽然我都不知道怎么去个性化这个模板。</p>
+
+  </div>
+  <!--<nav aria-label="Back">
+    <ul class="pager" style="margin-top: 0">
+      <li class="next"><a href="#" onclick="history.back();"><span>&larr;</span> Back</a></li>
+    </ul>
+  </nav>-->
+</div>
+  </section>
+  <footer class="footer">
+  <p>© 2017 <a href="https://github.com/LookTail" target="_blank">LookTail</a></p>
+  <p>Theme - <a href="" target="_blank">TailTail</a></p>
+  <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a></p>
+</footer>
+  
+</body>
+
+
+</html>

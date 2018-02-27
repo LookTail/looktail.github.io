@@ -1,0 +1,33 @@
+.pager {
+  padding-left: 0;
+  /* margin: 20px 0; */
+  text-align: center;
+  list-style: none;
+  overflow: hidden;
+  margin: -20px 0 20px 0;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  color: #808080;
+  text-decoration: none;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  background-color: #eee;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}

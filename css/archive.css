@@ -1,0 +1,43 @@
+.archive-wrapper {
+  margin-top: 120px;
+  padding-bottom: 71px;
+}
+
+.archive-year {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.archive-year h1 {
+  font-size: 26px;
+  font-weight: normal;
+}
+
+.archive-year a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.archive-year .title {
+  font-size: 22px;
+  color: #707070;
+  display: inline;
+  font-weight: normal;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+
+.archive-year time {
+  display: inline-block;
+  width: 60px;
+  color: #909090;
+}
+
+.archive-year li {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.archive-year a.title:hover {
+  color: #000000;
+}

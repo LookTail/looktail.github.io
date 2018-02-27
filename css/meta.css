@@ -1,0 +1,18 @@
+.meta-wrapper {
+  color: #999;
+  font-size: 16px;
+  font-family: 'Lato';
+  margin-top: 3px;
+  padding-left: 1px;
+}
+
+.tags {
+  display: inline-block;
+  margin-left: 5px;
+  background-color: #F0F0F0;
+  font-size: 12px;
+  padding: 3px 5px;
+  border-radius: 20%;
+  color: #606060;
+  vertical-align: text-bottom;
+}

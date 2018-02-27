@@ -1,0 +1,35 @@
+.index-wrapper {
+  margin-top: 120px;
+  padding-bottom: 51px;
+}
+
+.article-wrapper {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #D8D8D8;
+}
+
+.article-wrapper .article-title {
+  text-decoration: none;
+  display: block;
+  color: #444444;
+  font-weight: normal;
+  margin: 5px 0;
+  font-size: 30px;
+}
+
+.article-meta {
+  color: #999;
+  font-size: 16px;
+  font-family: 'Lato';
+  margin-top: 3px;
+  padding-left: 1px;
+  display: inline-block;
+}
+
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0;
+  padding: 20px 0;
+}

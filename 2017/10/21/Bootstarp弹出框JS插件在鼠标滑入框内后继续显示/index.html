@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <title>Bootstrap弹出框JS插件在鼠标滑入框内后继续显示 | LookTail</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/jquery-3.2.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>  
+  <header>
+  <div id="root" class="header-warp">
+    <a href="/"><h3 class="logo-font">LookTail</h3></a>
+    <div id="about-wrapper" class="about-wrapper">
+      <a id="about" title="LookTail" href="#" class="img-container">
+        <img class="av-pic" src="/assets/avatar.jpg">  
+      </a>
+    </div>
+    <nav class="navigation">
+      <a href="/">Home</a>
+      <a href="/archives">Archive</a>
+    </a>
+    </nav>
+  </div>
+</header>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#about').popover({template: '<div id="pop" class="popover" role="tooltip"><div class="arrow"></div><img class="popover-img" src="/assets/avatar.jpg"><div class="popover-info"><h2>LookTail</h2><h4>About Me</h4><p>我什么都不会啊怎么办？怎么办？就这么懒还想知道怎么办？</p><h4>Find Me</h4><ul><li>GitHub: <a href="https://github.com/LookTail" target="_blank">LookTail</a></li></ul></div></div>', placement: "left", trigger: "manual"});
+  });
+
+  $('body').on("mouseenter", '#about-wrapper',
+  function () {
+    $('#about').popover('show');
+  });
+
+  $('body').on("mouseleave", '#about-wrapper',
+  function () {
+    $('#about').popover('hide');
+  });
+</script>
+  <section class="content-container">
+    <div class="post-wrapper">
+  <h1>Bootstrap弹出框JS插件在鼠标滑入框内后继续显示</h1>
+  <div class="meta-wrapper">
+  <span>Posted at</span>
+  <time>2017-10-21</time>
+  
+    <a class="tags">JS</a>
+  
+    <a class="tags">CSS</a>
+  
+</div>
+  <div class="markdown-body">
+    <p>在写自己的Hexo主题模板的时候，在header的部分想放置一个头像，然后鼠标移到头像上时显示头像的大图以及一些其他的详细自我介绍等，于是在bootstrap上发现了提示框的JS插件比较适合。</p>
+<a id="more"></a>
+<h1 id="想实现的效果"><a href="#想实现的效果" class="headerlink" title="想实现的效果"></a>想实现的效果</h1><p>先上一张已经实现完的效果图吧。</p>
+<p><img src="/images/popover.png" width="50%" height="50%"></p>
+<p>基本上就是鼠标移到头像上弹出左边的框，鼠标向左移动后弹窗继续展示，这样就可以点击弹窗中的链接等信息，鼠标滑出头像或者弹出框后弹出框消失。恩，看起来还是挺简单的。</p>
+<h1 id="实现过程中遇到的麻烦"><a href="#实现过程中遇到的麻烦" class="headerlink" title="实现过程中遇到的麻烦"></a>实现过程中遇到的麻烦</h1><p>由于自己js写插件的能力还比较薄弱，就在bootstrap上找了一下弹出框的插件，简单看了一下就决定使用。还可以自己设置弹出框使用的模板，还是挺不错的嘛。然后就发现了一个问题：一旦鼠标离开了绑定的元素，也就是我们的小头像，就会立刻消失，那我还怎么点击弹出框里面的链接啊！摔！于是查看了一下弹出框的<strong>trigger</strong>属性，一共四个可选值：<strong>click | hover | focus | manual</strong>。那么问题来了：<strong>click</strong>是点击绑定元素显示弹出框，再次点击元素才消失。<strong>hover</strong>是移到元素上显示，移出元素就立即消失。<strong>focus</strong>是点击元素显示，然后点击任意空白处消失。这三项好像都不是完美符合我们的要求啊！使用<strong>click</strong>和<strong>focus</strong>的话需要点击才出现和消失使用上太不方便，<strong>hover</strong>虽自动出现和消失但无法点击到弹出框内的链接。看来只能自己想想别的办法了。<br></p>
+<p>然后我注意到插件提供了几种事件，似乎可以用来实现我们的设想。事件表如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">show.bs.popover</td>
+<td style="text-align:left">This event fires immediately when the show instance method is called.</td>
+</tr>
+<tr>
+<td style="text-align:left">shown.bs.popover</td>
+<td style="text-align:left">This event is fired when the popover has been made visible to the user (will wait for CSS transitions to complete).</td>
+</tr>
+<tr>
+<td style="text-align:left">hide.bs.popover</td>
+<td style="text-align:left">This event is fired immediately when the hide instance method has been called.</td>
+</tr>
+<tr>
+<td style="text-align:left">hidden.bs.popover</td>
+<td style="text-align:left">This event is fired when the popover has finished being hidden from the user (will wait for CSS transitions to complete).</td>
+</tr>
+<tr>
+<td style="text-align:left">inserted.bs.popover</td>
+<td style="text-align:left">This event is fired after the show.bs.popover event when the popover template has been added to the DOM.</td>
+</tr>
+</tbody>
+</table>
+<p>我尝试的第一个办法是<strong>trigger</strong>属性使用<strong>hover</strong>，然后尝试使用<strong>hidden.bs.popover</strong>事件，在弹出框消失之后立即调用<code>.popover(&#39;show&#39;)</code>方法，在鼠标离开头像元素后再次打开弹出框，再判断鼠标移出弹出框后关闭。这时大神估计已经想到了：这是一个死循环。。这个弹出框无论如何是关不掉了0.0，因为每次想要关闭弹出框时，都会触发hidden事件而再次打开一个弹出框。<br></p>
+<p>看来想用一下插件提供的事件来实现是不可能了，不过还好<strong>trigger</strong>属性可以设置为<strong>manual</strong>手动控制。这时我想去监听鼠标对头像元素以及弹出框的滑入滑出事件，但是又遇到一个麻烦：弹出框是动态创建的元素，插件创建元素时id名每次都设置了一个不一样的随机编号，根本无法绑定事件。我想了想认为可以给头像元素外再包一个<code>div</code>标签，由于动态创建的弹出框与绑定对象同级，因此这个<code>div</code>可以包裹住头像元素以及弹出框元素，再以这个整个<code>div</code>作为鼠标事件的检测绑定元素，通过jQuery的<code>on()</code>方法将<code>mouseenter</code>和<code>mouseleave</code>事件绑定到元素上，再分别调用弹出框的出现和隐藏方法，就可以实现我们想要的效果啦。这里还有一个小知识点：</p>
+<blockquote>
+<p>注意：使用 on() 方法添加的事件处理程序适用于当前及未来的元素（比如由脚本创建的新元素）。</p>
+</blockquote>
+<p>可以说是很完美了，正好我们的元素是动态创建的。<br></p>
+<p>你以为这就完了？怎么可能。。就当我满心欢喜以为完美实现了，正在把玩这个特性的时候，发现有时候在鼠标从头像滑到弹出框时会失败，弹出框依旧会消失！经过仔细尝试和分析之后，找到了原因，图解一下：</p>
+<p><img src="/images/popover-bug.png" width="50%" height="50%"></p>
+<p>我们的整体的<code>div</code>是红色框部分，如果沿着蓝色路径滑动鼠标，弹出框就会消失，而沿着红色框内的路径滑动就不会消失。解决方法其实也很简单，给头像元素设置一个稍微长一点的下外边距，这样整体<code>div</code>的包裹部分会增加黄色部分，就可以覆盖大部分的鼠标滑动路径啦。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>用别人家的插件总是不可能百分百的满足你的心意，能找到满足你要求的解决方法固然很好，但写一个自己的插件也是不错的选择，但目前我能力还达不到，以后可以尝试着写写哈哈。</p>
+
+  </div>
+  <!--<nav aria-label="Back">
+    <ul class="pager" style="margin-top: 0">
+      <li class="next"><a href="#" onclick="history.back();"><span>&larr;</span> Back</a></li>
+    </ul>
+  </nav>-->
+</div>
+  </section>
+  <footer class="footer">
+  <p>© 2017 <a href="https://github.com/LookTail" target="_blank">LookTail</a></p>
+  <p>Theme - <a href="" target="_blank">TailTail</a></p>
+  <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a></p>
+</footer>
+  
+</body>
+
+
+</html>
